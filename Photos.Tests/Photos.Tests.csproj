@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -16,8 +16,11 @@
   <ItemGroup>
     <Folder Include="ClientTests\" />
     <Folder Include="FunctionsTests\" />
-    <Folder Include="ApiTests\" />
     <Folder Include="SharedTests\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Photos.API\Photos.API.csproj" />
   </ItemGroup>
 
 </Project>

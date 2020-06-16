@@ -136,6 +136,19 @@ app {
     top: 0.5rem;
 }
 
+.twilio-connect-button {
+    background: url(https://www.twilio.com/bundles/connect-apps/img/connect-button.png);
+    width: 130px;
+    height: 34px;
+    display: block;
+    margin: 0 auto;
+}
+
+    .twilio-connect-button:hover {
+        background-position: 0 34px;
+    }
+
+
 @media (max-width: 767.98px) {
     .main .top-row:not(.auth) {
         display: none;
