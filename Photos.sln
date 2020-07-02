@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30128.36
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Photos.Fx", "Photos.Fx\Photos.Fx.csproj", "{E3D61880-E585-4ADD-A5FB-7CD533B8C586}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Photos.Fx", "Photos.Fx\Photos.Fx.csproj", "{E3D61880-E585-4ADD-A5FB-7CD533B8C586}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Photos.Client", "Photos.Client\Photos.Client.csproj", "{00AD6B05-D3FB-4DE8-85F0-23387F2DA694}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Photos.Client", "Photos.Client\Photos.Client.csproj", "{00AD6B05-D3FB-4DE8-85F0-23387F2DA694}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Photos.API", "Photos.API\Photos.API.csproj", "{D3E5A918-1C52-4F1C-B8A8-E0AEB0F46635}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Photos.API", "Photos.API\Photos.API.csproj", "{D3E5A918-1C52-4F1C-B8A8-E0AEB0F46635}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Photos.Shared", "Photos.Shared\Photos.Shared.csproj", "{76AE7D6C-AB68-4CBF-BDD4-9635B5340B69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Photos.Shared", "Photos.Shared\Photos.Shared.csproj", "{76AE7D6C-AB68-4CBF-BDD4-9635B5340B69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Photos.Tests", "Photos.Tests\Photos.Tests.csproj", "{A643DF1B-0EEF-43A3-992B-7DA207B2ED2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Photos.Tests", "Photos.Tests\Photos.Tests.csproj", "{A643DF1B-0EEF-43A3-992B-7DA207B2ED2D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{69DE7775-F4CD-451D-99A1-DC252F52EB8B}"
 	ProjectSection(SolutionItems) = preProject

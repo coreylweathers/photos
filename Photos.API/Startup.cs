@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Photos.Shared.Models;
+using Photos.Shared.Services;
 
 namespace Photos.API
 {
@@ -26,6 +21,23 @@ namespace Photos.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            // ADD TWILIOSERVICE
+            services.AddTransient<ITwilioService, TwilioService>();
+
+            // ADD TWILIOOPTIONS
+            services.Configure<TwilioOptions>(Configuration.GetSection("Twilio"));
+
+            // ADDING CORS SUPPORT
+            services.AddCors(opts => 
+            {
+                opts.AddDefaultPolicy(policy => 
+                {
+                    policy.WithOrigins("https://localhost:44390")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +51,8 @@ namespace Photos.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 

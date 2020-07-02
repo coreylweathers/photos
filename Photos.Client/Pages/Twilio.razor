@@ -1,0 +1,27 @@
+﻿@page "/twilio"
+<h3>Twilio</h3>
+
+<div class="row">
+    <div class="col">
+        <p>Here is where we'll purchase a twilio phone number &amp; configure it</p>
+        <label>Enter the phone number</label>
+        <input @bind="AreaCode" />
+        <button class="btn btn-primary" @onclick="SearchPhoneNumber">Purchase a Number</button>
+    </div>
+</div>
+@if (!string.IsNullOrEmpty(PhoneNumber))
+{
+    <div class="row">
+        <div class="col">
+            <p>Here's our number: @PhoneNumber</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>Do you want to purchase the number?</p>
+            <button class="btn btn-primary" @onclick="PurchasePhoneNumber">Really Purchase the Number</button>
+
+            <button class="btn btn-primary">No I asked for a 415 number</button>
+        </div>
+    </div>
+}

@@ -2,7 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>c06f1106-709a-426a-9cf7-de7365fb29cf</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Photos.Shared\Photos.Shared.csproj" />
+  </ItemGroup>
 
 
 </Project>
