@@ -9,5 +9,8 @@ namespace Photos.Shared.Models
     {
         [JsonProperty("response")]
         public string Response { get; set; }
+
+        [JsonProperty("sid")]
+        public string PhoneNumberSid { get; set; }
     }
 }

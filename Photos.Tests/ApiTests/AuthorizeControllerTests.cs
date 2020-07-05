@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Moq;
 using Photos.API.Controllers;
+using Photos.Shared.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,11 +11,12 @@ namespace Photos.Tests.ApiTests
 {
     public class AuthorizeControllerTests
     {
-        private readonly TwilioController _sut;
+        private TwilioController _sut;
+        private Mock<ITwilioService> mockTwilioService;
+        private Mock<IStorageService> mockStorageService;
 
         public AuthorizeControllerTests()
         {
-            _sut = new TwilioController();
         }
 
         [Fact]
@@ -21,6 +24,9 @@ namespace Photos.Tests.ApiTests
         {
             // ARRANGE
             var accountSid = "AC24504e9f04164744a970e26bb81cb2e8";
+            mockTwilioService = new Mock<ITwilioService>();
+            mockStorageService = new Mock<IStorageService>();
+            _sut = new TwilioController(mockTwilioService.Object, mockStorageService.Object);
 
             // ACT
             var result = _sut.Authorize(accountSid) as NoContentResult;
@@ -33,6 +39,9 @@ namespace Photos.Tests.ApiTests
         public void Get_WithParams_ReturnsValidDeauthroizeResult()
         {
             // ARRANGE
+            mockTwilioService = new Mock<ITwilioService>();
+            mockStorageService = new Mock<IStorageService>();
+            _sut = new TwilioController(mockTwilioService.Object, mockStorageService.Object);
 
             // ACT
             var result = _sut.Deauthorize() as NoContentResult;

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Photos.Shared.Services
 {
@@ -6,5 +7,6 @@ namespace Photos.Shared.Services
     {
         Task<string> PurchasePhoneNumber(string phoneNumber);
         Task<string> SearchPhoneNumber(string areaCode);
+        Task<IEnumerable<string>> GetPhoneNumberSids();
     }
 }

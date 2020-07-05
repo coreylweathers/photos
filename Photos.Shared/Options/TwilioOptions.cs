@@ -1,4 +1,4 @@
-﻿namespace Photos.Shared.Models
+﻿namespace Photos.Shared.Models.Options
 {
     public class TwilioOptions
     {

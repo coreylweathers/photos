@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Photos.Shared.Models;
+using Photos.Shared.Models.Options;
+using Photos.Shared.Options;
 using Photos.Shared.Services;
 
 namespace Photos.API
@@ -24,9 +25,11 @@ namespace Photos.API
 
             // ADD TWILIOSERVICE
             services.AddTransient<ITwilioService, TwilioService>();
+            services.AddSingleton<IStorageService, TableStorageService>();
 
             // ADD TWILIOOPTIONS
             services.Configure<TwilioOptions>(Configuration.GetSection("Twilio"));
+            services.Configure<TableOptions>(Configuration.GetSection("TableStorage"));
 
             // ADDING CORS SUPPORT
             services.AddCors(opts => 

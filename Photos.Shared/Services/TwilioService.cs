@@ -1,7 +1,10 @@
 ﻿using Microsoft.Extensions.Options;
 using Photos.Shared.Extensions;
 using Photos.Shared.Models;
+using Photos.Shared.Models.Options;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Twilio;
@@ -9,6 +12,7 @@ using Twilio.Base;
 using Twilio.Exceptions;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.Rest.Api.V2010.Account.AvailablePhoneNumberCountry;
+using Twilio.Rest.Messaging.V1.Service;
 using Twilio.Types;
 
 namespace Photos.Shared.Services
@@ -72,6 +76,13 @@ namespace Photos.Shared.Services
             // Select a phone number & return it
             var number = results?.Select(result => result.FriendlyName).FirstOrDefault();
             return number.ToString();
+        }
+
+        public async Task<IEnumerable<string>> GetPhoneNumberSids()
+        {
+            var numbers = await IncomingPhoneNumberResource.ReadAsync();
+
+            return numbers.Select(x => x.Sid).AsEnumerable();
         }
 
         public virtual async Task<ResourceSet<LocalResource>> GetLocalPhoneNumber(string areaCode= null)

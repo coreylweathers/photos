@@ -15,10 +15,12 @@ namespace Photos.API.Controllers
     public class TwilioController : ControllerBase
     {
         private readonly ITwilioService _twilioService;
+        private readonly IStorageService _storageService;
 
-        public TwilioController(ITwilioService twilioService)
+        public TwilioController(ITwilioService twilioService, IStorageService storageService)
         {
             _twilioService = twilioService;
+            _storageService = storageService;
         }
 
         [HttpGet("authorize"), HttpPost("authorize")]
@@ -35,12 +37,20 @@ namespace Photos.API.Controllers
             return NoContent();
         }
 
-        [HttpGet("phonenumber")]
+        [HttpGet("phonenumbers")]
         public async Task<IActionResult> SearchPhoneNumber([FromQuery]string areaCode = "")
         {
+            var response = "{{\"response\":\"{0}\"}}";
+            // Search in storage first.
+            var phoneNumberSid = (await _twilioService.GetPhoneNumberSids()).FirstOrDefault();
+            var data = await _storageService.GetData(phoneNumberSid);
+            if (data != null)
+            {             
+                return new ContentResult { Content = string.Format(response, data), ContentType = "application/json", StatusCode = 200 };
+            }
+            // if no result, then search the twilioservice
             var result = await _twilioService.SearchPhoneNumber(areaCode);
-            string response = $"{{\"response\":\"{result}\"}}";
-            return new ContentResult { Content = response, ContentType = "application/json", StatusCode = 200 };
+            return new ContentResult { Content = string.Format(response, result), ContentType = "application/json", StatusCode = 200 };
         }
 
         [HttpPost("phonenumber")]
