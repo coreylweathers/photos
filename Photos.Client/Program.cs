@@ -17,7 +17,13 @@ namespace Photos.Client
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
+
+            // This adds the backed API to the project
+            // TODO: Make the URI for the API configurable and not hardcoded
             builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("https://localhost:44343") });
+
+            // This adds logging to the application
+            builder.Logging.SetMinimumLevel(LogLevel.Debug);
 
             await builder.Build().RunAsync();
         }

@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
+using Photos.Shared.Extensions;
 using Photos.Shared.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ namespace Photos.Client.Pages
     public partial class Twilio
     {
         [Inject]
+        public ILogger<Twilio> Logger { get; set; }
+        [Inject]
         public HttpClient Http { get; set; }
         public string PhoneNumber { get; set; }
         public string SearchResult { get; set; }
@@ -21,18 +24,22 @@ namespace Photos.Client.Pages
 
         protected override async Task OnInitializedAsync()
         {
+            Logger.LogInformationWithDate("Starting the oninitialized method");
+            Logger.LogInformationWithDate("Searching for existing phone numbers for this user");
             // Call the api to see if we have phone numbers
             var response = await Http.GetFromJsonAsync<TwilioApiPhoneNumber>($"api/twilio/phonenumbers");
 
             // If we have phone number, update the PhoneNumber property
             PhoneNumber = response?.Response;
+            Logger.LogInformationWithDate("DONE!");
         }
 
         public async Task SearchPhoneNumber()
         {
+            //TODO: Update this method to do some error handling
+
             // connect to the api to purchase the number
             var response = await Http.GetFromJsonAsync<TwilioApiPhoneNumber>($"api/twilio/phonenumbers?areaCode={AreaCode}");
-
             // set a string variable with the purchased number
             SearchResult = response.Response;
         }
